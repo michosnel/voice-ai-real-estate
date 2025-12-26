@@ -164,14 +164,8 @@
     <script>
         // Get API key from environment or window
         function getAPIKey() {
-            // Try different ways to access the API key
-            if (window.process && window.process.env && window.process.env.API_KEY) {
-                return window.process.env.API_KEY;
+            return 'AIzaSyBlJuyps2uiFGopI9KG9y3qkPe8HU5rr34';    return window.process.env.API_KEY;
             }
-            if (process && process.env && process.env.API_KEY) {
-                return process.env.API_KEY;
-            }
-            return null;
         }
 
         function updateStatus() {
