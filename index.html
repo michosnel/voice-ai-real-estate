@@ -52,7 +52,7 @@
 
     <script>
         const API_KEY = 'AIzaSyBlJuyps2uiFGopI9KG9y3qkPe8HU5rr34';
-        const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+        const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
         
         let recognition;
         let isListening = false;
@@ -164,12 +164,10 @@
             
             const chatBox = document.getElementById('chatBox');
             
-            // Clear empty chat message
             if (chatBox.querySelector('.empty-chat')) {
                 chatBox.innerHTML = '';
             }
             
-            // Add user message
             const userDiv = document.createElement('div');
             userDiv.className = 'message user-message';
             userDiv.textContent = msg;
@@ -177,19 +175,16 @@
             input.value = '';
             input.disabled = true;
             
-            // Add AI thinking message
             const aiDiv = document.createElement('div');
             aiDiv.className = 'message ai-message';
             aiDiv.textContent = 'Thinking...';
             chatBox.appendChild(aiDiv);
             chatBox.scrollTop = chatBox.scrollHeight;
             
-            // Get response
             const response = await callGeminiAPI(msg);
             aiDiv.textContent = response;
             chatBox.scrollTop = chatBox.scrollHeight;
             
-            // Speak response if it's not an error
             if (!response.startsWith('Error:')) {
                 speakText(response);
             }
@@ -198,7 +193,6 @@
             input.focus();
         }
         
-        // Initialize
         window.addEventListener('load', initSpeechRecognition);
         document.getElementById('userInput').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
